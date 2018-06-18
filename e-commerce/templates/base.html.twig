@@ -15,7 +15,7 @@
             <h1>TechFactory</h1>
             <ul>
                 {% for categorie in categories %}
-                    <li><a href="#">{{ categorie }}</a></li>
+                    <li><a href="{{ path('categories_show', {'slug': categorie.name}) }}">{{ categorie }}</a></li>
                 {% endfor %}
             </ul>
         </header>
