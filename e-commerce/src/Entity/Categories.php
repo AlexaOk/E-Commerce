@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Categories
 {
+
+    public function __toString() {
+        return $this->name;
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
