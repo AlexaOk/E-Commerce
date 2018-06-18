@@ -11,11 +11,10 @@ class HomeController
   /**
  * @Route("/")
  */
-    public function homepage()
+    public function index()
     {
-       return new Response('first page already!');
+        return new Response('products/show.html.twig');
     }
-
     /**
      * @Route("/news/{slug}")
      */
