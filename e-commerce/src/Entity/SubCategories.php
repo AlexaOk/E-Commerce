@@ -35,7 +35,7 @@ class SubCategories
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Products", mappedBy="sub_category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Products", mappedBy="sub_category")
      */
     private $products;
 

@@ -39,12 +39,12 @@ class Products
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\SubCategories", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SubCategories", inversedBy="products")
      */
     private $sub_category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Categories", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="products")
      */
     private $category;
 
@@ -112,57 +112,30 @@ class Products
         return $this;
     }
 
-    /**
-     * @return Collection|SubCategories[]
-     */
     public function getSubCategory(): Collection
     {
         return $this->sub_category;
     }
 
-    public function addSubCategory(SubCategories $subCategory): self
+    public function setSubCategory(?SubCategory $subCategory): self
     {
-        if (!$this->sub_category->contains($subCategory)) {
-            $this->sub_category[] = $subCategory;
-        }
+        $this->subCategory = $subCategory;
 
         return $this;
     }
 
-    public function removeSubCategory(SubCategories $subCategory): self
-    {
-        if ($this->sub_category->contains($subCategory)) {
-            $this->sub_category->removeElement($subCategory);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Categories[]
-     */
     public function getCategory(): Collection
     {
         return $this->category;
     }
 
-    public function addCategory(Categories $category): self
+    public function setCategory(?Category $category): self
     {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-        }
+        $this->category = $category;
 
         return $this;
     }
 
-    public function removeCategory(Categories $category): self
-    {
-        if ($this->category->contains($category)) {
-            $this->category->removeElement($category);
-        }
-
-        return $this;
-    }
 
     public function getProductDetails(): ?ProductDetails
     {
