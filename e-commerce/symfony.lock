@@ -80,6 +80,15 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "javiereguiluz/easyadmin-bundle": {
+        "version": "1.17",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.17",
+            "ref": "e58cc3a3956761ff41c27bc9847b145655494d42"
+        }
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
