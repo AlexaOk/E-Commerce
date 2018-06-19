@@ -19,13 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoriesController extends Controller
 {
-    /**
-     * @Route("/", name="categories_index", methods="GET")
-     */
-    public function index(CategoriesRepository $categoriesRepository): Response
-    {
-        return $this->render('categories/index.html.twig', ['categories' => $categoriesRepository->findAll()]);
-    }
+//    /**
+//     * @Route("/", name="categories_index", methods="GET")
+//     */
+//    public function index(CategoriesRepository $categoriesRepository): Response
+//    {
+//        return $this->render('categories/index.html.twig', ['categories' => $categoriesRepository->findAll()]);
+//    }
 
 //    /**
 //     * @Route("/new", name="categories_new", methods="GET|POST")
