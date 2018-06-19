@@ -7,6 +7,7 @@ use App\Form\ProductsType;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use App\Repository\SubCategoriesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,11 +54,16 @@ class ProductsController extends Controller
 //    }
 
     /**
-     * @Route("/{id}", name="products_show", methods="GET")
+     * @Route("/{category}/{sub_category}/{id}", name="products_show", methods="GET")
+     * @ParamConverter("category", options={"mapping": {"category_name" : "name"}})
+     * @ParamConverter("sub_category", options={"mapping": {"sub_category_name" : "name"}})
      */
-    public function show(Products $product): Response
+    public function show(Products $product, CategoriesRepository $categoriesRepository): Response
     {
-        return $this->render('products/show.html.twig', ['product' => $product]);
+        return $this->render('products/show.html.twig', [
+            'product' => $product,
+            'categories' => $categoriesRepository->findAll(),
+        ]);
     }
 
 //    /**

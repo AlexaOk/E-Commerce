@@ -57,14 +57,12 @@ class CategoriesController extends Controller
     public function show($slug, CategoriesRepository $categoriesRepository, SubCategoriesRepository $subCategoriesRepository, ProductsRepository $productsRepository): Response
     {
         $category = $categoriesRepository->findBy(array('name' => $slug));
-        $products = $productsRepository->find($category);
-        // dump($subCategoriesRepository->findBy(array('category' => $category[0])));
-        dump($products);
+
         return $this->render('categories/show.html.twig', [
             'category' => $category[0],
             'categories' => $categoriesRepository->findAll(),
             'sub_categories' => $subCategoriesRepository->findBy(array('category' => $category[0])),
-
+            'products' => $productsRepository->findBy(array('category' => $category[0]), array('date' => 'DESC'), 5),
         ]);
     }
 

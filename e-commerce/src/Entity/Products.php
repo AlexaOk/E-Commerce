@@ -117,7 +117,7 @@ class Products
         return $this->sub_category;
     }
 
-    public function setSubCategory(?SubCategory $subCategory): self
+    public function setSubCategory(?SubCategories $subCategory): self
     {
         $this->subCategory = $subCategory;
 
@@ -129,7 +129,7 @@ class Products
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCategory(?Categories $category): self
     {
         $this->category = $category;
 
