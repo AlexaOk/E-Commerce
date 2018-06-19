@@ -19,24 +19,9 @@ class ProductDetails
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $size;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $weight;
-
-    /**
      * @ORM\Column(type="array", nullable=true)
      */
     private $photo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $color;
 
     /**
      * @ORM\Column(type="integer")
@@ -68,39 +53,21 @@ class ProductDetails
      */
     private $productToOrders;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\VariantOptions", inversedBy="productDetails")
+     */
+    private $variantoption;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
         $this->productToOrders = new ArrayCollection();
+        $this->variantoption = new ArrayCollection();
     }
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getSize(): ?string
-    {
-        return $this->size;
-    }
-
-    public function setSize(?string $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?int $weight): self
-    {
-        $this->weight = $weight;
-
-        return $this;
     }
 
     public function getPhoto(): ?array
@@ -111,18 +78,6 @@ class ProductDetails
     public function setPhoto(?array $photo): self
     {
         $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(?string $color): self
-    {
-        $this->color = $color;
 
         return $this;
     }
@@ -232,6 +187,32 @@ class ProductDetails
             if ($productToOrder->getProductDetail() === $this) {
                 $productToOrder->setProductDetail(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VariantOptions[]
+     */
+    public function getVariantoption(): Collection
+    {
+        return $this->variantoption;
+    }
+
+    public function addVariantoption(VariantOptions $variantoption): self
+    {
+        if (!$this->variantoption->contains($variantoption)) {
+            $this->variantoption[] = $variantoption;
+        }
+
+        return $this;
+    }
+
+    public function removeVariantoption(VariantOptions $variantoption): self
+    {
+        if ($this->variantoption->contains($variantoption)) {
+            $this->variantoption->removeElement($variantoption);
         }
 
         return $this;
