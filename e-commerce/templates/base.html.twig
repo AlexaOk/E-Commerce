@@ -5,19 +5,55 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         {% endblock %}
     </head>
     <body>
         <header>
-            <img src="/images/logo.png" width="80px" id="logo">
-            <h1>TechFactory</h1>
-            <ul>
-                {% for categorie in categories %}
-                    <li><a href="#">{{ categorie }}</a></li>
-                {% endfor %}
-            </ul>
+          <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Acceuil</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">categorie 1
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">ss-categorie 1-1</a></li>
+          <li><a href="#">ss-categorie 1-2</a></li>
+          <li><a href="#">ss-categorie 1-3</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">categorie 2
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">ss-categorie 1-1</a></li>
+          <li><a href="#">ss-categorie 1-2</a></li>
+          <li><a href="#">ss-categorie 1-3</a></li>
+        </ul>
+      </li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span>Inscription</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
+      <li>
+         <h4 id="my_margin">
+           <a href="#">
+             <span class="glyphicon glyphicon-shopping-cart">5</span>
+           </a>
+         </h4>
+      </li>
+    </ul>
+  </div>
+</nav>
+
         </header>
         {% block body %}{% endblock %}
         {% block javascripts %}

@@ -1,0 +1,18 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+#my_margin {
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+span.glyphicon {
+  color: grey;
+}
+span.glyphicon:hover {
+  color: white;
+}
