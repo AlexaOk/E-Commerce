@@ -1,3 +1,8 @@
+*{
+  margin:auto;
+  box-sizing: border-box;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -15,4 +20,18 @@ span.glyphicon {
 }
 span.glyphicon:hover {
   color: white;
+}
+#active_acceuil {
+  color: grey;
+  background-color: transparent;
+}
+#active_acceuil:hover {
+  color: white;
+}
+.navbar-inverse {
+background-color: rgba(0, 0, 0, 0.8)!important;
+
+}
+body.back-end-img{
+  background-image: url("../image/coin.jpg");
 }
