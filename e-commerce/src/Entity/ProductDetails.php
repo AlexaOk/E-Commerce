@@ -44,11 +44,6 @@ class ProductDetails
     private $new;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Products", mappedBy="productDetails")
-     */
-    private $product;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProductToOrders", mappedBy="product_detail")
      */
     private $productToOrders;
@@ -58,9 +53,15 @@ class ProductDetails
      */
     private $variantoption;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Products", inversedBy="productDetails")
+     */
+    private $product;
+
+    
+
     public function __construct()
     {
-        $this->product = new ArrayCollection();
         $this->productToOrders = new ArrayCollection();
         $this->variantoption = new ArrayCollection();
     }
@@ -131,37 +132,6 @@ class ProductDetails
     }
 
     /**
-     * @return Collection|Products[]
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
-
-    public function addProduct(Products $product): self
-    {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-            $product->setProductDetails($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Products $product): self
-    {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
-            // set the owning side to null (unless already changed)
-            if ($product->getProductDetails() === $this) {
-                $product->setProductDetails(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|ProductToOrders[]
      */
     public function getProductToOrders(): Collection
@@ -217,4 +187,20 @@ class ProductDetails
 
         return $this;
     }
+
+    public function getProduct(): ?Products
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Products $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+    public function __toString() {
+        return (string) $this->id;
+    }
+
 }

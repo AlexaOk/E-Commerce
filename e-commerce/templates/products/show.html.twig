@@ -23,6 +23,13 @@
                 <th>Date</th>
                 <td>{{ product.date ? product.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Photo</th>
+                {% for productDetail in product.productDetails %}
+                    <img src="{{ asset('images/' ~ productDetail.photo) }}">
+                {% endfor %}
+                {#<td><img src="{{ asset('images/', product.productDetails.photo) }}"></td>#}
+            </tr>
         </tbody>
     </table>
 

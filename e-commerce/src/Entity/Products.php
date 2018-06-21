@@ -49,7 +49,7 @@ class Products
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProductDetails", inversedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductDetails", mappedBy="product")
      */
     private $productDetails;
 
@@ -57,6 +57,7 @@ class Products
     {
         $this->sub_category = new ArrayCollection();
         $this->category = new ArrayCollection();
+        $this->productDetails = new ArrayCollection();
     }
 
     public function getId()
@@ -112,19 +113,19 @@ class Products
         return $this;
     }
 
-    public function getSubCategory(): Collection
+    public function getSubCategory()
     {
         return $this->sub_category;
     }
 
-    public function setSubCategory(?SubCategories $subCategory): self
+    public function setSubCategory(?SubCategories $sub_category): self
     {
-        $this->subCategory = $subCategory;
+        $this->sub_category = $sub_category;
 
         return $this;
     }
 
-    public function getCategory(): Collection
+    public function getCategory()
     {
         return $this->category;
     }
@@ -136,16 +137,37 @@ class Products
         return $this;
     }
 
-
-    public function getProductDetails(): ?ProductDetails
+    /**
+     * @return Collection|ProductDetails[]
+     */
+    public function getProductDetails(): Collection
     {
         return $this->productDetails;
     }
 
-    public function setProductDetails(?ProductDetails $productDetails): self
+    public function addProductDetail(ProductDetails $productDetail): self
     {
-        $this->productDetails = $productDetails;
+        if (!$this->productDetails->contains($productDetail)) {
+            $this->productDetails[] = $productDetail;
+            $productDetail->setProduct($this);
+        }
 
         return $this;
+    }
+
+    public function removeProductDetail(ProductDetails $productDetail): self
+    {
+        if ($this->productDetails->contains($productDetail)) {
+            $this->productDetails->removeElement($productDetail);
+            // set the owning side to null (unless already changed)
+            if ($productDetail->getProduct() === $this) {
+                $productDetail->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->name;
     }
 }
