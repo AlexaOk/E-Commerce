@@ -19,24 +19,9 @@ class ProductDetails
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $size;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $weight;
-
-    /**
      * @ORM\Column(type="array", nullable=true)
      */
     private $photo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $color;
 
     /**
      * @ORM\Column(type="integer")
@@ -59,48 +44,31 @@ class ProductDetails
     private $new;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Products", mappedBy="productDetails")
-     */
-    private $product;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProductToOrders", mappedBy="product_detail")
      */
     private $productToOrders;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\VariantOptions", inversedBy="productDetails")
+     */
+    private $variantoption;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Products", inversedBy="productDetails")
+     */
+    private $product;
+
+    
+
     public function __construct()
     {
-        $this->product = new ArrayCollection();
         $this->productToOrders = new ArrayCollection();
+        $this->variantoption = new ArrayCollection();
     }
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getSize(): ?string
-    {
-        return $this->size;
-    }
-
-    public function setSize(?string $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(?int $weight): self
-    {
-        $this->weight = $weight;
-
-        return $this;
     }
 
     public function getPhoto(): ?array
@@ -111,18 +79,6 @@ class ProductDetails
     public function setPhoto(?array $photo): self
     {
         $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(?string $color): self
-    {
-        $this->color = $color;
 
         return $this;
     }
@@ -176,37 +132,6 @@ class ProductDetails
     }
 
     /**
-     * @return Collection|Products[]
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
-
-    public function addProduct(Products $product): self
-    {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-            $product->setProductDetails($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Products $product): self
-    {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
-            // set the owning side to null (unless already changed)
-            if ($product->getProductDetails() === $this) {
-                $product->setProductDetails(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|ProductToOrders[]
      */
     public function getProductToOrders(): Collection
@@ -236,4 +161,46 @@ class ProductDetails
 
         return $this;
     }
+
+    /**
+     * @return Collection|VariantOptions[]
+     */
+    public function getVariantoption(): Collection
+    {
+        return $this->variantoption;
+    }
+
+    public function addVariantoption(VariantOptions $variantoption): self
+    {
+        if (!$this->variantoption->contains($variantoption)) {
+            $this->variantoption[] = $variantoption;
+        }
+
+        return $this;
+    }
+
+    public function removeVariantoption(VariantOptions $variantoption): self
+    {
+        if ($this->variantoption->contains($variantoption)) {
+            $this->variantoption->removeElement($variantoption);
+        }
+
+        return $this;
+    }
+
+    public function getProduct(): ?Products
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Products $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+    public function __toString() {
+        return (string) $this->id;
+    }
+
 }

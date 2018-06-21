@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Categories
 {
+
+    public function __toString() {
+        return $this->name;
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -27,6 +31,11 @@ class Categories
      * @ORM\OneToMany(targetEntity="App\Entity\SubCategories", mappedBy="category")
      */
     private $subCategories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Products", mappedBy="category")
+     */
+    private $products;
 
     public function __construct()
     {
@@ -76,6 +85,36 @@ class Categories
             // set the owning side to null (unless already changed)
             if ($subCategory->getCategory() === $this) {
                 $subCategory->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+    /**
+     * @return Collection|Products[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProducts(Products $products): self
+    {
+        if (!$this->products->contains($products)) {
+            $this->products[] = $products;
+            $products->setProducts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProducts(Products $products): self
+    {
+        if ($this->products->contains($products)) {
+            $this->products->removeElement($products);
+            // set the owning side to null (unless already changed)
+            if ($products->getProducts() === $this) {
+                $products->setProducts(null);
             }
         }
 

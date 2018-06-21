@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SubCategories
 {
+
+    public function __toString() {
+        return $this->name;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,7 +35,7 @@ class SubCategories
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Products", mappedBy="sub_category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Products", mappedBy="sub_category")
      */
     private $products;
 
