@@ -16,6 +16,11 @@
             <ul>
                 {% for categorie in categories %}
                     <li><a href="{{ path('categories_show', {'slug': categorie.name}) }}">{{ categorie }}</a></li>
+                        <ul>
+                    {% for subCategorie in categorie.subCategories %}
+                        <li><a href="{{ path('sub_categories_show', {'category': categorie, 'sub_category':  subCategorie}) }}">{{ subCategorie }}</a></li>
+                    {% endfor %}
+                        </ul>
                 {% endfor %}
             </ul>
         </header>
