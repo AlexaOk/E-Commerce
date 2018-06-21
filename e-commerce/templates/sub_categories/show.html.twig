@@ -15,7 +15,7 @@
 
     {% for product in products %}
         <div>
-            <h3>{{ product.name }}</h3>
+            <h3><a href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">{{ product.name }}</a></h3>
             <p>{{ product.description }}</p>
             <p>
                 {% for tag in product.tags %}

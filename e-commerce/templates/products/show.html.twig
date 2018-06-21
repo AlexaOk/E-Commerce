@@ -25,13 +25,24 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                {% for productDetail in product.productDetails %}
-                    <img src="{{ asset('images/' ~ productDetail.photo) }}">
+                {% for detail in productDetails %}
+                    <img src="{{ asset('images/' ~ detail.photo) }}">
                 {% endfor %}
-                {#<td><img src="{{ asset('images/', product.productDetails.photo) }}"></td>#}
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ productDetails.price }}</td>
             </tr>
         </tbody>
+
     </table>
+        <tbody>
+            <tr>
+                <th>Price</th>
+                <td>{{ product. }}</td>
+            </tr>
+        </tbody>
+    <table class="table">
 
     {#<a href="{{ path('products_index') }}">back to list</a>#}
 
