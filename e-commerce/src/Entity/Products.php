@@ -39,17 +39,17 @@ class Products
     private $date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\SubCategories", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SubCategories", inversedBy="products")
      */
     private $sub_category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Categories", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="products")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProductDetails", inversedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductDetails", mappedBy="product")
      */
     private $productDetails;
 
@@ -57,6 +57,7 @@ class Products
     {
         $this->sub_category = new ArrayCollection();
         $this->category = new ArrayCollection();
+        $this->productDetails = new ArrayCollection();
     }
 
     public function getId()
@@ -112,67 +113,61 @@ class Products
         return $this;
     }
 
-    /**
-     * @return Collection|SubCategories[]
-     */
-    public function getSubCategory(): Collection
+    public function getSubCategory()
     {
         return $this->sub_category;
     }
 
-    public function addSubCategory(SubCategories $subCategory): self
+    public function setSubCategory(?SubCategories $sub_category): self
     {
-        if (!$this->sub_category->contains($subCategory)) {
-            $this->sub_category[] = $subCategory;
-        }
+        $this->sub_category = $sub_category;
 
         return $this;
     }
 
-    public function removeSubCategory(SubCategories $subCategory): self
+    public function getCategory()
     {
-        if ($this->sub_category->contains($subCategory)) {
-            $this->sub_category->removeElement($subCategory);
-        }
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * @return Collection|Categories[]
+     * @return Collection|ProductDetails[]
      */
-    public function getCategory(): Collection
-    {
-        return $this->category;
-    }
-
-    public function addCategory(Categories $category): self
-    {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categories $category): self
-    {
-        if ($this->category->contains($category)) {
-            $this->category->removeElement($category);
-        }
-
-        return $this;
-    }
-
-    public function getProductDetails(): ?ProductDetails
+    public function getProductDetails(): Collection
     {
         return $this->productDetails;
     }
 
-    public function setProductDetails(?ProductDetails $productDetails): self
+    public function addProductDetail(ProductDetails $productDetail): self
     {
-        $this->productDetails = $productDetails;
+        if (!$this->productDetails->contains($productDetail)) {
+            $this->productDetails[] = $productDetail;
+            $productDetail->setProduct($this);
+        }
 
         return $this;
+    }
+
+    public function removeProductDetail(ProductDetails $productDetail): self
+    {
+        if ($this->productDetails->contains($productDetail)) {
+            $this->productDetails->removeElement($productDetail);
+            // set the owning side to null (unless already changed)
+            if ($productDetail->getProduct() === $this) {
+                $productDetail->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+    public function __toString() {
+        return $this->name;
     }
 }
