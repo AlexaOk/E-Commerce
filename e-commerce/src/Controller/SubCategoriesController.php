@@ -60,11 +60,11 @@ class SubCategoriesController extends Controller
         $category = $categoriesRepository->findBy(array('name' => $category));
 
         return $this->render('sub_categories/show.html.twig', [
-            'sub_category' => $sub_category[0],
-            'sub_categories' => $category[0]->getSubCategories(),
-            'products' => $sub_category[0]->getProducts(),
-            'categories' => $categoriesRepository->findAll(),
-            'category' => $sub_category[0]->getCategory(),
+            // 'sub_category' => $sub_category[0],
+            //'sub_categories' => $category[0]->getSubCategories(),
+            //'products' => $sub_category[0]->getProducts(),
+            //'categories' => $categoriesRepository->findAll(),
+            //'category' => $sub_category[0]->getCategory(),
         ]);
     }
 

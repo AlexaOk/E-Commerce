@@ -12,55 +12,55 @@
   {% endblock %}
 </head>
 <body class="back-end-img">
-  <header>
+  {#<header>#}
 
-    <nav class="navbar navbar-inverse" style="margin-bottom: 0px; border-radius:0px; border:0px">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">LOGO</a>
-        </div>
+    {#<nav class="navbar navbar-inverse" style="margin-bottom: 0px; border-radius:0px; border:0px">#}
+      {#<div class="container-fluid">#}
+        {#<div class="navbar-header">#}
+          {#<a class="navbar-brand" href="#">LOGO</a>#}
+        {#</div>#}
 
-        <form class="navbar-form navbar-left" action="" style="margin-left: 30%;">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Inscription</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
-          <li>
-            <h4 id="my_margin">
-              <a href="#">
-                <span class="glyphicon glyphicon-shopping-cart">5</span>
-              </a>
-            </h4>
-          </li>
-        </ul>
-      </div>
+        {#<form class="navbar-form navbar-left" action="" style="margin-left: 30%;">#}
+          {#<div class="form-group">#}
+            {#<input type="text" class="form-control" placeholder="Search">#}
+          {#</div>#}
+          {#<button type="submit" class="btn btn-default">Submit</button>#}
+        {#</form>#}
+        {#<ul class="nav navbar-nav navbar-right">#}
+          {#<li><a href="#"><span class="glyphicon glyphicon-user"></span>Inscription</a></li>#}
+          {#<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>#}
+          {#<li>#}
+            {#<h4 id="my_margin">#}
+              {#<a href="#">#}
+                {#<span class="glyphicon glyphicon-shopping-cart">5</span>#}
+              {#</a>#}
+            {#</h4>#}
+          {#</li>#}
+        {#</ul>#}
+      {#</div>#}
 
-      <!-- NAVBAR FOR THE CATEGORIE LOGIN CART ... -->
+      {#<!-- NAVBAR FOR THE CATEGORIE LOGIN CART ... -->#}
 
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#" id="active_acceuil">Acceuil</a></li>
-          {% for categorie in categories %}
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('categories_show', {'slug': categorie.name}) }}">{{ categorie }}
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                {% for subCategorie in categorie.subCategories %}
-                  <li><a href="{{ path('sub_categories_show', {'category': categorie, 'sub_category':  subCategorie}) }}">{{ subCategorie }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endfor %}
+      {#<div class="container-fluid">#}
+        {#<ul class="nav navbar-nav">#}
+          {#<li class="active"><a href="#" id="active_acceuil">Acceuil</a></li>#}
+          {#{% for categorie in categories %}#}
+          {#<li class="dropdown">#}
+            {#<a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('categories_show', {'slug': categorie.name}) }}">{{ categorie }}#}
+              {#<span class="caret"></span></a>#}
+              {#<ul class="dropdown-menu">#}
+                {#{% for subCategorie in categorie.subCategories %}#}
+                  {#<li><a href="{{ path('sub_categories_show', {'category': categorie, 'sub_category':  subCategorie}) }}">{{ subCategorie }}</a></li>#}
+                {#{% endfor %}#}
+              {#</ul>#}
+            {#</li>#}
+            {#{% endfor %}#}
 
-          </ul>
-        </div>
-      </nav>
+          {#</ul>#}
+        {#</div>#}
+      {#</nav>#}
 
-    </header>
+    {#</header>#}
     {% block body %}{% endblock %}
     {% block javascripts %}
     {% endblock %}
