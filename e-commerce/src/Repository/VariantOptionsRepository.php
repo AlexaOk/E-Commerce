@@ -22,19 +22,30 @@ class VariantOptionsRepository extends ServiceEntityRepository
 //    /**
 //     * @return VariantOptions[] Returns an array of VariantOptions objects
 //     */
-    /*
-    public function findByExampleField($value)
+
+    public function findByProductDetails($value)
     {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        //return $this->createQueryBuilder('v')
+            //->andWhere('v.productDetails = :val')
+            //->setParameter('val', $value)
+            // ->orderBy('v.id', 'ASC')
+            // ->setMaxResults(10)
+            //->getQuery()
+            //->getResult()
+        //;
+
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT *
+        FROM App\Entity\VariantOptions p
+        WHERE p.productDetails = :val'
+        )->setParameter('val', $value);
+
+        // returns an array of Product objects
+        return $query->execute();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?VariantOptions

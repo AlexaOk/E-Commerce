@@ -3,28 +3,28 @@
 {% block title %}SubCategories{% endblock %}
 
 {% block body %}
-    {#<h1>{{ category.name }}</h1>#}
+    <h1>{{ category.name }}</h1>
 
-    {#<ul>#}
-        {#{% for sub_category in sub_categories %}#}
-            {#<li><a href="{{ path('sub_categories_show', {'category': category.name, 'sub_category':  sub_category.name}) }}">{{ sub_category.name }}</a></li>#}
-        {#{% endfor %}#}
-    {#</ul>#}
+    <ul>
+        {% for sub_category in sub_categories %}
+            <li><a href="{{ path('sub_categories_show', {'category': category.name, 'sub_category':  sub_category.name}) }}">{{ sub_category.name }}</a></li>
+        {% endfor %}
+    </ul>
 
-    {#<h2>{{ sub_category.name }}</h2>#}
+    <h2>{{ sub_category.name }}</h2>
 
-    {#{% for product in products %}#}
-        {#<div>#}
-            {#<h3><a href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">{{ product.name }}</a></h3>#}
-            {#<p>{{ product.description }}</p>#}
-            {#<p>#}
-                {#{% for tag in product.tags %}#}
-                    {##{{ tag }}#}
-                {#{% endfor %}#}
-            {#</p>#}
-            {#<p>{{ product.date | date }}</p>#}
-        {#</div>#}
-    {#{% endfor %}#}
+    {% for product in products %}
+        <div>
+            <h3><a href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">{{ product.name }}</a></h3>
+            <p>{{ product.description }}</p>
+            <p>
+                {% for tag in product.tags %}
+                    #{{ tag }}
+                {% endfor %}
+            </p>
+            <p>{{ product.date | date }}</p>
+        </div>
+    {% endfor %}
 
     {#<a href="{{ path('sub_categories_index') }}">back to list</a>#}
 

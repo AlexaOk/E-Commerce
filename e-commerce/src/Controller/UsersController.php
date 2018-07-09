@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Repository\CategoriesRepository;
+use App\Repository\SubCategoriesRepository;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ class UsersController extends Controller
     /**
     * @Route("/register", name="users_registration")
     */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, CategoriesRepository $categoriesRepository, SubCategoriesRepository $subCategoriesRepository)
     {
       $token=rand(0, 99999);
       // 1) build the form
@@ -72,7 +74,11 @@ class UsersController extends Controller
 
       return $this->render(
         'users/new.html.twig',
-        array('form' => $form->createView())
+        array(
+            'form' => $form->createView(),
+            'categories' => $categoriesRepository->findAll(),
+            'subcategories' => $subCategoriesRepository->findAll(),
+        )
       );
     }
 

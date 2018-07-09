@@ -8,6 +8,8 @@ use App\Repository\CategoriesRepository;
 use App\Repository\ProductDetailsRepository;
 use App\Repository\ProductsRepository;
 use App\Repository\SubCategoriesRepository;
+use App\Repository\VariantOptionsRepository;
+use App\Repository\VariantsRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
-* @Route("/")
+* @Route("/products")
 */
 class ProductsController extends Controller
 {
@@ -60,13 +62,17 @@ class ProductsController extends Controller
     * @ParamConverter("category", options={"mapping": {"category_name" : "name"}})
     * @ParamConverter("sub_category", options={"mapping": {"sub_category_name" : "name"}})
     */
-   public function show(Products $product, CategoriesRepository $categoriesRepository, ProductDetailsRepository $productDetailsRepository, SubCategoriesRepository $subCategoriesRepository): Response
+   public function show(Products $product, CategoriesRepository $categoriesRepository, ProductDetailsRepository $productDetailsRepository, SubCategoriesRepository $subCategoriesRepository, VariantsRepository $variantsRepository, VariantOptionsRepository $variantOptionsRepository): Response
    {
+       $productDetails = $product->getProductDetails();
+       $variantOptions = $variantOptionsRepository->findBy(array('productDetails' => $productDetails->getValues()));
+       dump($variantOptions);
+
        return $this->render('products/show.html.twig', [
            'product' => $product,
            'categories' => $categoriesRepository->findAll(),
            'subcategories' => $subCategoriesRepository->findAll(),
-           'productDetails' => $product->getProductDetails(),
+           'productDetails' => $productDetails,
        ]);
    }
 
