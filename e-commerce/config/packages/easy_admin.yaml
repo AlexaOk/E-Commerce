@@ -1,4 +1,6 @@
 easy_admin:
+   list:
+        max_results: 25
    entities:
         Categories:
             class: App\Entity\Categories
