@@ -41,3 +41,11 @@ background-color: rgba(0, 0, 0, 0.8)!important;
 .products_total {
   background-color: rgba(0, 0, 0, 0.8)!important;
 }
+
+body {
+}
+
+.form-group {
+    margin-bottom: 0.2rem;
+}
+
