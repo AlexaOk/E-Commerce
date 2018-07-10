@@ -1,6 +1,6 @@
-*{
-  margin:auto;
-  box-sizing: border-box;
+* {
+    margin: auto;
+    box-sizing: border-box;
 }
 
 .dropdown {
@@ -12,32 +12,37 @@
     display: block;
 }
 #my_margin {
-  margin-bottom: 0px;
-  margin-top: 15px;
+    margin-bottom: 0px;
+    margin-top: 15px;
 }
 span.glyphicon {
-  color: grey;
+    color: grey;
 }
 span.glyphicon:hover {
-  color: white;
+    color: white;
 }
 #active_acceuil {
-  color: grey;
-  background-color: transparent;
+    color: grey;
+    background-color: transparent;
 }
 #active_acceuil:hover {
-  color: white;
+    color: white;
 }
 .navbar-inverse {
-background-color: rgba(0, 0, 0, 0.8)!important;
-
+    background-color: rgba(0, 0, 0, 0.8) !important;
 }
 /*body.back-end-img{*/
-  /*background-image: url("../image/coin.jpg");*/
+/*background-image: url("../image/coin.jpg");*/
 /*}*/
 /*h1, th, td {*/
-  /*color: white!important;*/
+/*color: white!important;*/
 /*}*/
 .products_total {
-  background-color: rgba(0, 0, 0, 0.8)!important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+body {
+}
+
+.form-group {
+    margin-bottom: 0.2rem;
 }
