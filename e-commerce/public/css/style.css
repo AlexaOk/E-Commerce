@@ -47,3 +47,19 @@ body {
 .form-group {
     margin-bottom: 0.2rem;
 }
+
+.card {
+    width: 18rem;
+    height: 18rem;
+    display: block;
+    overflow: hidden;
+}
+.card-layout {
+    width: 100%;
+    border: 1px black solid;
+}
+.img-card {
+}
+.carousel-size {
+    height: 400px;
+}
