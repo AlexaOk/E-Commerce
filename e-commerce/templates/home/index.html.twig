@@ -19,21 +19,21 @@
         <div class="carousel-item active ">
             <div class="d-flex justify-content-center">
             <a class="d-block carousel-size"  href="#">
-            <img style="max-height: 100%" class="h-100" src="http://static.usbmegastore.com/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/u/s/usb524-caticlan-3-0-cles-usb-03.png" alt="First slide">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.0.photo }}" alt="First slide">
             </a>
             </div>
         </div>
         <div class="carousel-item">
         <div class="d-flex justify-content-center">
         <a class="d-block carousel-size" href="#">
-            <img style="max-height: 100%" class="h-100" src="https://www.pixeprint.com/pub/media/wysiwyg/product/cle-usb-avec-logo-pas-cher-zone.jpg" alt="Second slide">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.1.photo }}" alt="Second slide">
             </a>
             </div>
         </div>
         <div class="carousel-item">
         <div class="d-flex justify-content-center">
         <a class="d-block carousel-size" href="#">
-            <img style="max-height: 100%" class="h-100" src="" alt="Third slide">
+            <img style="max-height: 100%" class="h-100" src="{{ all_productDetails.2.photo }}" alt="Third slide">
             </a>
         </div>
         </div>
@@ -50,33 +50,33 @@
         </div>
     </div>
 </div>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row pt-4 ">
-{% for productDetails in list_productDetails %}
+            {% for productDetails in list_productDetails %}
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 p-0 m-0 d-flex justify-content-center">
 
             
                 <div class="card-layout">
-                    <a href="#" class="d-block w-100">
-                    <img class="img-card w-100" src="http://static.usbmegastore.com/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/u/s/usb524-caticlan-3-0-cles-usb-03.png" alt="{{ productDetails.product.name }} image">
+                    <a href="{{ path('products_show', {'category': productDetails.product.category.name, 'sub_category':  productDetails.product.subCategory, 'id': productDetails.product.id}) }}" class="d-block w-100 alink">
+                    <img class="img-card w-100" src="{{ productDetails.photo }}" alt="{{ productDetails.product.name }} image">
                     <div class="p-2">
                         <div class="d-flex justify-content-around">
                         <h5 class="">{{ productDetails.product.name }}</h5>
-                        <p class="">{{ productDetails.price }} €</p>
+                        
+                        {% for variantoption in productDetails.variantoption %}
+                            {% if variantoption.variant == "Stockage" %}
+
+                            <p class="">{{ variantoption.detail }}</p>
+
+                            {% endif %}
+                        {% endfor %}
                         </div>
                     </div>
                     </a>
                 </div>
             </div>
 
-
-       
-        {# {% for variantoption in productDetails.variantoption %}
-        <li>{{ variantoption.variant.name }} : {{ variantoption.detail }}</li>
-        {% endfor %} #}
-
-
-    {% endfor %}
+            {% endfor %}
         </div>
     </div>
 

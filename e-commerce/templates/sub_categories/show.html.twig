@@ -27,20 +27,84 @@
             </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-9">
+    
             <h4 class="pl-4 mb-3">{{ sub_category.name }}</h4>
-            {% for product in products %}
+
+
+<table class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col"></th>
+<th scope="col">Product</th>
+<th scope="col">Price</th>
+<th scope="col">Stock</th>
+</tr>
+</thead>
+<tbody>
+{% for product in products %}
+<tr>
+
+{% for productdetails in product.productdetails %}
+<th scope="row"><img class="card-small" src="{{ productdetails.photo }}"></th>
+
+<td>
+<div>
+<a class="alert-link alink" href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">
+{{ product }} 
+{% for variantoption in productdetails.variantoption %}
+{% if variantoption.variant == "Stockage" %}
+
+- {{ variantoption.detail }}
+
+{% elseif variantoption.variant == "Couleur" %}
+
+- {{ variantoption.detail }}
+
+{% endif %}
+{% endfor %}
+</a>
+</div>
+</td>
+
+<td>{{ productdetails.price }} €</td>
+
+{% if productdetails.stock > 10 %}
+
+<td class="text-success">Available</td>
+
+{% elseif productdetails.stock == 0 %}
+
+<td class="text-danger">Sold Out</td>
+
+{% elseif productdetails.stock < 10 %}
+
+<td class="text-warning">Low Stock</td>
+
+
+{% endif %}
+</tr>
+
+{% endfor %}
+{% endfor %}
+
+
+
+</tbody>
+</table>
+
+
+
+
+{# 
                 <div>
                     <h6><a href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">{{ product.name }}</a></h6>
                     <p>{{ product.description }}</p>
                     <p>
-                        {% for tag in product.tags %}
-                            #{{ tag }}
-                        {% endfor %}
+                            #{{ productdetails }}
                     </p>
                     <p>{{ product.date | date }}</p>
-                </div>
-            {% endfor %}
+                </div> #}
         </div>
     </div>
 

@@ -28,6 +28,8 @@ class HomeController extends Controller
 
         $productDetails = $this->getDoctrine()->getRepository(ProductDetails::class);
         $list_productDetails = $productDetails->findBy(['new' => true], null, 4);
+        $all_productDetails = $productDetails->findAll();
+        shuffle($all_productDetails);
         
         if(empty($list_productDetails)){
             $list_productDetails = $productDetails->findBy([],null,4);
@@ -36,6 +38,7 @@ class HomeController extends Controller
         dump($list_productDetails);
 
         return $this->render('home/index.html.twig', [
+            'all_productDetails' => $all_productDetails,
             'list_productDetails' => $list_productDetails,
             'controller_name' => 'HomeController',
             'products' => $productsRepository->findAll(),

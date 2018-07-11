@@ -49,8 +49,7 @@ span.glyphicon:hover {
     width: 100%;
     border: 1px black solid;
 }
-.img-card {
-}
+
 .carousel-size {
     height: 400px;
 }
@@ -64,4 +63,27 @@ span.glyphicon:hover {
     color: #fff;
     text-decoration: none;
     background-color: #6c757d;
+}
+
+.card-small {
+    width: 6rem;
+    height: 6rem;
+    display: block;
+    overflow: hidden;
+}
+
+.alink {
+    color: rgb(102, 102, 102);
+}
+.alink:hover {
+    color: black;
+    text-decoration: none;
+}
+.alink:focus {
+    color: black;
+    text-decoration: none;
+}
+.alink:active {
+    color: black;
+    text-decoration: none;
 }
