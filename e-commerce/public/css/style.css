@@ -1,8 +1,3 @@
-* {
-    margin: auto;
-    box-sizing: border-box;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -40,10 +35,6 @@ span.glyphicon:hover {
 .products_total {
     background-color: rgba(0, 0, 0, 0.8) !important;
 }
-
-body {
-}
-
 .form-group {
     margin-bottom: 0.2rem;
 }
@@ -62,4 +53,15 @@ body {
 }
 .carousel-size {
     height: 400px;
+}
+
+.list-group-item.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #6c757d;
 }

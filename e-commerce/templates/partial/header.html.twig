@@ -12,9 +12,6 @@
                     <a class="nav-link" href="{{path('home')}}">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{path('products_index')}}">Products</a>
-                </li>
-                <li class="nav-item active">
                     <a class="nav-link" href="#">Cart</a>
                 </li>
                 
@@ -40,15 +37,17 @@
             </ul>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </div>
 </nav>
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg pt-4 pb-3">
     <div class="container">
+        <div class="row">
         {% for categorie in categories %}
-            <div class="dropdown ">
+            <div class="col">
+            <div class="dropdown">
 
                 <a class="btn btn-secondary btn-sm dropdown-toggle" href="{{ path('categories_show', {'slug': categorie.name}) }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ categorie }}
@@ -60,6 +59,8 @@
                 {% endfor %}
                 </div>
             </div>
+            </div>
         {% endfor %}
+        </div>
     </div>
 </nav>

@@ -19,7 +19,7 @@ class ProductDetails
     private $id;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
 
@@ -71,12 +71,12 @@ class ProductDetails
         return $this->id;
     }
 
-    public function getPhoto(): ?array
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
 
-    public function setPhoto(?array $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
