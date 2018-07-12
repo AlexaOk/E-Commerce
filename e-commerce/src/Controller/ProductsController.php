@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Entity\ProductDetails;
 use App\Form\ProductsType;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductDetailsRepository;
@@ -62,16 +63,15 @@ class ProductsController extends Controller
     * @ParamConverter("category", options={"mapping": {"category_name" : "name"}})
     * @ParamConverter("sub_category", options={"mapping": {"sub_category_name" : "name"}})
     */
-   public function show(Products $product, CategoriesRepository $categoriesRepository, ProductDetailsRepository $productDetailsRepository, SubCategoriesRepository $subCategoriesRepository, VariantsRepository $variantsRepository, VariantOptionsRepository $variantOptionsRepository): Response
+   public function show($sub_category, $id, CategoriesRepository $categoriesRepository, ProductDetailsRepository $productDetailsRepository, SubCategoriesRepository $subCategoriesRepository, VariantsRepository $variantsRepository, VariantOptionsRepository $variantOptionsRepository): Response
    {
-       $productDetails = $product->getProductDetails();
-       $variantOptions = $variantOptionsRepository->findBy(array('productDetails' => $productDetails->getValues()));
-       dump($variantOptions);
+       $productDetails = $this->getDoctrine()
+                        ->getRepository(ProductDetails::class)
+                        ->find($id);
 
        return $this->render('products/show.html.twig', [
-           'product' => $product,
            'categories' => $categoriesRepository->findAll(),
-           'subcategories' => $subCategoriesRepository->findAll(),
+           'subcategories' => $sub_category,
            'productDetails' => $productDetails,
        ]);
    }

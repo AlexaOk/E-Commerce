@@ -3,64 +3,48 @@
 {% block title %}Products{% endblock %}
 
 {% block body %}
-    <h1>Products</h1>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h4 class="border-bottom pb-3">
+                    {{ subcategories }}
+                    <strong>
+                    {{ productDetails.product.name}} 
+                    </strong>
+                    {% for variantoption in productDetails.variantoption %}
+                        {% if variantoption.variant == "Stockage" %}
+                            - {{ variantoption.detail }}
+                        {% endif %}
+                    {% endfor %}
+                </h4>
+            </div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <div class="col m-3">
+                <img class="img-thumbnail" src="{{ productDetails.photo }}" />
+            </div>
+            <div class="col d-flex justify-content-center flex-column m-3">
+                {% for variantoption in productDetails.variantoption %}
+                    <p class="m-0">{{ variantoption.variant }} : {{ variantoption.detail }}</p>
+                {% endfor %}
+            </div>
+            <div class="col d-flex align-items-center m-3">
+                <div class="d-flex align-items-center flex-column p-4 border-add-cart rounded">
+                    <h4>{{ productDetails.price }}€</h4>
+                    {% if productDetails.stock > 10 %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Tags</th>
-                <td>{{ product.tags ? product.tags|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ product.date ? product.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                    {#<img src="{{ asset('images/' ~ productDetails.photo) }}">#}
-            </tr>
-        </tbody>
-    </table>
+                    <h5 class="text-success">Available</h5>
+                    <a href="#" class="btn btn-success">Add to Cart</a>
 
-    <h2>Dérivés du produit</h2>
+                    {% elseif productDetails.stock == 0 %}
+                    <h5 class="text-danger">Sold Out</h5>
+                    {% elseif productDetails.stock < 10 %}
 
-    {% for detail in productDetails %}
-        <table class="table">
-            <tbody>
-
-                <tr>
-                    <th>Price</th>
-                    <td>{{ detail.price }} €</td>
-                </tr>
-                {% if detail.new %}
-                <tr>
-                    <th>Nouveau produit !</th>
-                </tr>
-                {% endif %}
-                {% if detail.discount %}
-                    <tr>
-                        <th>Discount</th>
-                        <td>{{ detail.discount }} %</td>
-                    </tr>
-                {% endif %}
-                <tr>
-                    <th>Stock</th>
-                    <td>{{ detail.stock }} en stock !</td>
-                </tr>
-            </tbody>
-        </table>
-    {% endfor %}
-    {#<a href="{{ path('products_index') }}">back to list</a>#}
-
-    {#<a href="{{ path('products_edit', {'id': product.id}) }}">edit</a>#}
-
-    {#{{ include('products/_delete_form.html.twig') }}#}
+                    <h5 class="text-warning">Low Stock</h5>
+                    <a href="#" class="btn btn-success">Add to Cart</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
