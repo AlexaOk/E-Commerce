@@ -50,7 +50,7 @@
 
 <td>
 <div>
-<a class="alert-link alink" href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': product.id}) }}">
+<a class="alert-link alink" href="{{ path('products_show', {'category': category.name, 'sub_category':  product.subCategory, 'id': productdetails.id}) }}">
 {{ product }} 
 {% for variantoption in productdetails.variantoption %}
 {% if variantoption.variant == "Stockage" %}
