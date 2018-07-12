@@ -22,32 +22,32 @@ class Users implements AdvancedUserInterface, \Serializable
   private $id;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $name;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $lastname;
 
   /**
-  * @ORM\Column(type="string", length=255, unique=true)
+  * @ORM\Column(type="string", length=190, unique=true)
   */
   private $username;
 
   /**
-  * @ORM\Column(type="string", length=255, unique=true)
+  * @ORM\Column(type="string", length=190, unique=true)
   */
   private $email;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $password;
 
   /**
-  * @ORM\Column(type="string", length=255, nullable=true)
+  * @ORM\Column(type="string", length=190, nullable=true)
   */
   private $verifyToken;
 
@@ -72,22 +72,22 @@ class Users implements AdvancedUserInterface, \Serializable
   private $phone;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $address;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $city;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $state;
 
   /**
-  * @ORM\Column(type="string", length=255)
+  * @ORM\Column(type="string", length=190)
   */
   private $country;
 
