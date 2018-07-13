@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Entity\Categories;
 use App\Entity\ProductDetails;
+use App\Entity\SubCategories;
 use App\Form\ProductsType;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductDetailsRepository;
@@ -34,6 +36,29 @@ class ProductsController extends Controller
 
        ]);
    }
+
+   /**
+    * @Route("/search", name="products_search", methods="GET")
+    */
+    public function find(Request $request):response
+    {
+      $search = $_GET['search'];
+      $categoryRepo = $this->getDoctrine()->getRepository(Categories::class);
+      $subCategoryRepo = $this->getDoctrine()->getRepository(SubCategories::class);
+      $ProductsRepo = $this->getDoctrine()->getRepository(Products::class);
+
+      //$subCategory = $subCategoryRepo->findBy(['name'=>$search]);
+    //  $category = $categoryRepo->findBy(['id'=>$subCategory]);
+      $products = $ProductsRepo->findBy(['name'=>$search]);
+      dump($products);
+      return $this->render('sub_categories/show.html.twig', [
+          'sub_category' => $products[0]->getSubCategory(),
+          'sub_categories' => $subCategoryRepo->findAll(),
+          'products' => $products,
+          'categories' => $categoryRepo->findAll(),
+          'category' => $products[0]->getCategory(),
+      ]);
+    }
 
 //    /**
 //     * @Route("/new", name="products_new", methods="GET|POST")
