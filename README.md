@@ -11,8 +11,6 @@ git clone https://github.com/AlexaOk/E-commerce.git
 
 ### Installing
 
-import database bdd.sql
-
 cd e-commerce
 
 composer install
