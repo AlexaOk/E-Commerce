@@ -7,7 +7,7 @@ An e-commerce website whith authentication, items finder, prices, stock availabl
 
 Download or clone the repository
 
-git clone https://github.com/AlexaOk/MyQuizz.git
+git clone https://github.com/AlexaOk/E-commerce.git
 
 ### Installing
 
